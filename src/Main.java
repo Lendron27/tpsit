@@ -5,33 +5,37 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner tastiera= new Scanner(System.in);
-        System.out.println("quante pecore dovrai contare per addormentarti?....");
+        System.out.println("Quanto è lungo il percorso?");
         int count= tastiera.nextInt(); //.nextLine() per leggere la riga
         //singolo thread
-        ContaPecore thr1 = new ContaPecore(count);
+        Gara thr1 = new Gara(count);
+        Gara thr2 = new Gara(count);
+        Gara thr3 = new Gara(count);
+        Gara thr4 = new Gara(count);
+        Gara thr5 = new Gara(count);
         thr1.start();
-
-        //thread padre è sveglio
-        for (int i = 0; i < 100; i++) {
-            System.out.println((i + 1) + " sono sveglio ");
-        }
+        thr2.start();
+        thr3.start();
+        thr4.start();
+        thr5.start();
     }
 }
 
-class ContaPecore extends Thread {
+class Gara extends Thread {
     //variabile privata
-    private final int num_pecore;
+    private final int lungh;
     //costruttore
-    public ContaPecore(int num){
+    public Gara(int num){
         super();
-        num_pecore=num;
+        lungh=num;
     }
     @Override
     public void run() {
-        setName("thread conta pecorelle");
-        System.out.println(Thread.currentThread().getName());
-        for (int i = 0; i < num_pecore; i++) {
-            System.out.println((i + 1) + " pecore ");
+        Scanner tastiera= new Scanner(System.in);
+        System.out.println("Come si chiama il cavallo?");
+        setName(tastiera.nextLine());
+        for (int i = 0; i < lungh; i+=5) {
+            System.out.println((i + 1) + " metri fatti da " + Thread.currentThread().getName());
         }
     }
 }
