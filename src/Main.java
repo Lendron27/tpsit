@@ -1,22 +1,32 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        Random random = new Random();
         Scanner tastiera= new Scanner(System.in);
         System.out.println("Quanto è lungo il percorso?");
         int count= tastiera.nextInt(); //.nextLine() per leggere la riga
         // crea e avvia 5  Cavallo
         Gara[] cavalli = new Gara[5];
+        int cavAz = random.nextInt(0, 4);
+        int dist = random.nextInt(1, count);
+        int azzoppa;
         for (int i = 0; i < 5; i++) {
             System.out.print("Inserisci nome cavallo: ");
             String nome = tastiera.next();
-            cavalli[i] = new Gara(nome, count);
+            if (i == cavAz) {
+                azzoppa = dist;
+            } else {
+                azzoppa = 0;
+            }
+            cavalli[i] = new Gara(nome, count, azzoppa);
         }
 
-        System.out.println("Cavalli in partenza:");
+        System.out.println(cavalli[cavAz].getNome() + " diventerà zoppo quando raggiungerà " + dist + "m. Cavalli in partenza:");
         for (int i = 0; i < 5; i++) {
             System.out.println((i + 1) + ") " + cavalli[i].getNome());
         }
@@ -42,10 +52,12 @@ class Gara extends Thread {
     private int percorso = 0;
     private final int lungh;
     private final String nome;
+    private final int azzoppa;
     private static ArrayList<String> tabella = new ArrayList<>();
     //costruttore
-    public Gara(String nome, int num){
+    public Gara(String nome, int num, int azzoppa){
         super();
+        this.azzoppa = azzoppa;
         this.nome = nome;
         lungh=num;
     }
@@ -60,7 +72,11 @@ class Gara extends Thread {
             percorso += 5;
             System.out.println(percorso + "m percorsi da " + nome);
             try {
-                Thread.sleep(2000);
+                if (azzoppa > 0 && percorso > azzoppa) {
+                    Thread.sleep(3000);
+                } else {
+                    Thread.sleep(2000);
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
