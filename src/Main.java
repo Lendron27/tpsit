@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -5,13 +6,16 @@ import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        Random random = new Random();
+    public static void main(String[] args) throws InterruptedException, IOException {
         Scanner tastiera= new Scanner(System.in);
+        //create a print writer for writing to a file
+        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+        System.setOut(out);
         System.out.println("Quanto è lungo il percorso?");
-        int count= tastiera.nextInt(); //.nextLine() per leggere la riga
-        // crea e avvia 5  Cavallo
+        int count= tastiera.nextInt();
+        tastiera.nextLine();
         Gara[] cavalli = new Gara[5];
+        Random random = new Random();
         int cavAz = random.nextInt(0, 4);
         int dist = random.nextInt(1, count);
         int azzoppa;
@@ -44,6 +48,10 @@ public class Main {
         for (int i = 0; i < classifica.size(); i++) {
             System.out.println((i + 1) + ") " + classifica.get(i));
         }
+        //read a line from the console
+        String lineFromInput = tastiera.nextLine();
+        out.println(lineFromInput);
+        out.close();
     }
 }
 

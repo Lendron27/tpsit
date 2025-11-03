@@ -1,0 +1,44 @@
+Quanto è lungo il percorso?
+Inserisci nome cavallo: Inserisci nome cavallo: Inserisci nome cavallo: Inserisci nome cavallo: Inserisci nome cavallo: Fabio diventerà zoppo quando raggiungerà 13m. Cavalli in partenza:
+1) Claudio
+2) Marco
+3) Aurelio
+4) Fabio
+5) Riccardo
+5m percorsi da Claudio
+5m percorsi da Marco
+5m percorsi da Fabio
+5m percorsi da Riccardo
+5m percorsi da Aurelio
+10m percorsi da Fabio
+10m percorsi da Aurelio
+10m percorsi da Claudio
+10m percorsi da Riccardo
+10m percorsi da Marco
+15m percorsi da Fabio
+15m percorsi da Aurelio
+15m percorsi da Riccardo
+15m percorsi da Claudio
+15m percorsi da Marco
+20m percorsi da Marco
+20m percorsi da Aurelio
+20m percorsi da Claudio
+20m percorsi da Riccardo
+20m percorsi da Fabio
+25m percorsi da Aurelio
+25m percorsi da Marco
+25m percorsi da Claudio
+25m percorsi da Riccardo
+30m percorsi da Marco
+30m percorsi da Claudio
+30m percorsi da Aurelio
+25m percorsi da Fabio
+30m percorsi da Riccardo
+30m percorsi da Fabio
+Classifica:
+1) Riccardo
+2) Claudio
+3) Aurelio
+4) Marco
+5) Fabio
+
