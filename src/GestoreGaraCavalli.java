@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class GestoreGaraCavalli {
     public static void main(String[] args) throws InterruptedException, IOException {
         Scanner tastiera= new Scanner(System.in);
         //create a print writer for writing to a file
@@ -52,50 +52,5 @@ public class Main {
         String lineFromInput = tastiera.nextLine();
         out.println(lineFromInput);
         out.close();
-    }
-}
-
-class Gara extends Thread {
-    //variabile privata
-    private int percorso = 0;
-    private final int lungh;
-    private final String nome;
-    private final int azzoppa;
-    private static ArrayList<String> tabella = new ArrayList<>();
-    //costruttore
-    public Gara(String nome, int num, int azzoppa){
-        super();
-        this.azzoppa = azzoppa;
-        this.nome = nome;
-        lungh=num;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    @Override
-    public void run() {
-        while (percorso < lungh) {
-            percorso += 5;
-            System.out.println(percorso + "m percorsi da " + nome);
-            try {
-                if (azzoppa > 0 && percorso > azzoppa) {
-                    Thread.sleep(3000);
-                } else {
-                    Thread.sleep(2000);
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        synchronized (tabella) {
-            tabella.add(nome);
-        }
-    }
-
-    public static ArrayList<String> getTabella() {
-        return tabella;
     }
 }
