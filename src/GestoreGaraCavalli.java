@@ -6,11 +6,9 @@ import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class GestoreGaraCavalli {
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException {
         Scanner tastiera= new Scanner(System.in);
         //create a print writer for writing to a file
-        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-        System.setOut(out);
         System.out.println("Quanto è lungo il percorso?");
         int count= tastiera.nextInt();
         tastiera.nextLine();
@@ -19,6 +17,7 @@ public class GestoreGaraCavalli {
         int cavAz = random.nextInt(0, 4);
         int dist = random.nextInt(1, count);
         int azzoppa;
+        File f = FileChooserUtility.chooseFile();
         for (int i = 0; i < 5; i++) {
             System.out.print("Inserisci nome cavallo: ");
             String nome = tastiera.next();
@@ -48,9 +47,14 @@ public class GestoreGaraCavalli {
         for (int i = 0; i < classifica.size(); i++) {
             System.out.println((i + 1) + ") " + classifica.get(i));
         }
-        //read a line from the console
-        String lineFromInput = tastiera.nextLine();
-        out.println(lineFromInput);
-        out.close();
+        try (FileWriter writer = new FileWriter(f)) {
+            writer.write("Classifica:\n");
+            for (int i = 0; i < classifica.size(); i++) {
+                writer.write((i + 1) + ") " + classifica.get(i) + "\n");
+            }
+            System.out.println("Classifica salvata su file:"+ f.getName());
+        } catch (IOException e) {
+            System.err.println("Errore: " + e.getMessage());
+        }
     }
 }
